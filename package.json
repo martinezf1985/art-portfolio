@@ -33,6 +33,7 @@
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.2",
     "@types/slick-carousel": "^1.6.40",
+    "@types/swiper": "^6.0.0",
     "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
