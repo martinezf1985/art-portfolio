@@ -6,9 +6,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import '../css/VideoCarousel.css'; // tu progreso circular
+import '../css/VideoCarousel.css'; // clase con animación de progreso
 
-const VideoCarousel: React.FC = () => {
+const ArtCarousel: React.FC = () => {
   const progressCircle = useRef<SVGSVGElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
 
@@ -60,4 +60,4 @@ const VideoCarousel: React.FC = () => {
   );
 };
 
-export default VideoCarousel;
+export default ArtCarousel;

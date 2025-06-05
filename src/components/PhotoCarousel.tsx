@@ -1,4 +1,3 @@
-// src/components/ImageCarousel.tsx
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
@@ -7,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import '../css/VideoCarousel.css'; // el CSS del progreso circular
+import '../css/VideoCarousel.css';
 
 const PhotoCarousel: React.FC = () => {
   const progressCircle = useRef<SVGSVGElement | null>(null);
@@ -20,11 +19,13 @@ const PhotoCarousel: React.FC = () => {
     }
   };
 
-  // Nombres de las imágenes en public/fotos
-  const photos = ['foto01.jpg', 'foto02.jpg', 'foto03.jpg', 'foto04.jpg', 'foto05.jpg', 'foto06.jpg', 'foto07.jpg', 'foto08.jpg'];
+  const photos = [
+    'foto01.jpg', 'foto02.jpg', 'foto03.jpg', 'foto04.jpg',
+    'foto05.jpg', 'foto06.jpg', 'foto07.jpg', 'foto08.jpg',
+  ];
 
   return (
-    <div className="relative w-full h-[400px] md:h-[600px]">
+    <div className="relative w-full max-w-4xl mx-auto bg-black rounded-2xl shadow-2xl overflow-hidden aspect-[3/4]">
       <Swiper
         spaceBetween={30}
         centeredSlides
@@ -38,9 +39,10 @@ const PhotoCarousel: React.FC = () => {
         {photos.map((filename) => (
           <SwiperSlide key={filename} className="flex items-center justify-center">
             <img
-              src={`/public/photos/${filename}`}
+              src={`/photos/${filename}`}
               alt={filename}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain bg-black"
+              loading="lazy"
             />
           </SwiperSlide>
         ))}

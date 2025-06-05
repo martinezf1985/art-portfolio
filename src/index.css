@@ -1,13 +1,4 @@
 :root {
-
-  html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* evita cualquier scroll horizontal */
-  background: #000;    /* coincide con el degradado base */
-}
-
-
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,6 +11,15 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #000; /* coincide con el degradado base */
+  scroll-behavior: smooth;
 }
 
 a {
@@ -75,10 +75,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
-@source "../node_modules/flowbite"; */
+
 @import "flowbite/dist/flowbite.min.css";

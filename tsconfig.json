@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  },
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    "allowSyntheticDefaultImports": true, // Permite importar módulos CommonJS como si fueran ESModules (como React).
+    "esModuleInterop": true,              // Compatibilidad adicional para importar módulos CommonJS.
+    "module": "ESNext",                   // Usa módulos ES modernos.
+    "target": "ESNext",                   // Compila a JavaScript moderno.
+    "moduleResolution": "Node",           // Usa resolución de módulos estilo Node.js.
+    "jsx": "react"                        // Transforma JSX al formato React.
+  }
 }
-
