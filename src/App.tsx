@@ -1,5 +1,4 @@
 
-
 // // App.tsx
 // import React, { useEffect, useRef, useState } from "react";
 // import { useLocation } from "react-router-dom";
@@ -10,7 +9,7 @@
 // import Footer from "./components/Footer";
 // import ContactSection from "./components/ContactSection";
 
-// const App = () => {
+// const App: React.FC = () => {
 //   const [showScrollTop, setShowScrollTop] = useState(false);
 
 //   const photoRef = useRef<HTMLDivElement>(null);
@@ -27,7 +26,7 @@
 //     return () => window.removeEventListener("scroll", onScroll);
 //   }, []);
 
-//   // Al cambiar la ruta, hace scroll suave a la sección correspondiente
+//   // Hacer scroll solo cuando la ruta NO sea "/"
 //   useEffect(() => {
 //     const sectionMap: Record<string, React.RefObject<HTMLDivElement>> = {
 //       "/": photoRef,
@@ -36,9 +35,12 @@
 //       "/contact": contactRef,
 //     };
 
+//     // Si la ruta es "/" no ejecutamos scrollIntoView
+//     if (location.pathname === "/") return;
+
 //     const ref = sectionMap[location.pathname];
 //     if (ref?.current) {
-//       // Le damos un pequeño delay para asegurar que el DOM esté listo
+//       // Esperamos un poco para que todo el DOM esté listo
 //       setTimeout(() => {
 //         ref.current!.scrollIntoView({ behavior: "smooth" });
 //       }, 100);
@@ -112,7 +114,7 @@
 //         </div>
 //       </section>
 
-//       {/* CONTACTO: siempre renderizado */}
+//       {/* CONTACTO: siempre renderizado, pero solo scrollea cuando /contact */}
 //       <ContactSection ref={contactRef} />
 
 //       {/* FOOTER */}
@@ -137,7 +139,8 @@
 // export default App;
 
 
-// App.tsx
+
+// src/App.tsx
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -156,29 +159,28 @@ const App: React.FC = () => {
   const contactRef = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
+  const isFirstMount = useRef(true);
 
-  // Mostrar botón "Volver arriba"
   useEffect(() => {
     const onScroll = () => setShowScrollTop(window.scrollY > 300);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Hacer scroll solo cuando la ruta NO sea "/"
   useEffect(() => {
-    const sectionMap: Record<string, React.RefObject<HTMLDivElement>> = {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
+    // Ahora el map acepta RefObject<HTMLDivElement | null>
+    const sectionMap: Record<string, React.RefObject<HTMLDivElement | null>> = {
       "/": photoRef,
       "/art": artRef,
       "/actor": actorRef,
       "/contact": contactRef,
     };
-
-    // Si la ruta es "/" no ejecutamos scrollIntoView
-    if (location.pathname === "/") return;
-
     const ref = sectionMap[location.pathname];
     if (ref?.current) {
-      // Esperamos un poco para que todo el DOM esté listo
       setTimeout(() => {
         ref.current!.scrollIntoView({ behavior: "smooth" });
       }, 100);
@@ -191,12 +193,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-violet-900 via-black to-black text-white overflow-x-hidden">
-      {/* NAVBAR */}
       <header className="py-6 bg-black/70 shadow-md">
         <NavBar />
       </header>
 
-      {/* TÍTULO PRINCIPAL */}
       <section className="text-center py-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
           FERDINAN MARTINS – Actor & Artista Visual
@@ -206,7 +206,6 @@ const App: React.FC = () => {
         </p>
       </section>
 
-      {/* GALERÍA FOTOGRÁFICA */}
       <section
         ref={photoRef}
         className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 bg-black"
@@ -222,7 +221,6 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* OBRAS VISUALES */}
       <section
         ref={artRef}
         className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 items-center bg-gray-950/90"
@@ -239,7 +237,6 @@ const App: React.FC = () => {
         <ArtCarousel />
       </section>
 
-      {/* EXPERIENCIA ACTORAL */}
       <section
         ref={actorRef}
         className="transition-all duration-500 ease-in-out px-6 py-12 bg-black/80"
@@ -252,15 +249,12 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTACTO: siempre renderizado, pero solo scrollea cuando /contact */}
       <ContactSection ref={contactRef} />
 
-      {/* FOOTER */}
       <footer className="bg-black py-8 text-center text-gray-400 text-sm border-t border-violet-800">
         <Footer />
       </footer>
 
-      {/* BOTÓN "VOLVER ARRIBA" */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
