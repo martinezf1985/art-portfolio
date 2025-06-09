@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
+   "composite": true,            // <-- PARA COMPOSITE PROJECTS
     "jsx": "react-jsx",
 
     /* Allow default React imports and JSX */
