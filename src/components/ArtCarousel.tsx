@@ -24,7 +24,7 @@ const ArtCarousel: React.FC = () => {
       <Swiper
         spaceBetween={30}
         centeredSlides
-        autoplay={{ delay: 20000, disableOnInteraction: false }}
+        autoplay={{ delay: 10000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
         modules={[Autoplay, Pagination, Navigation]}
