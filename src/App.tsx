@@ -141,6 +141,8 @@
 
 
 // src/App.tsx
+
+
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
@@ -149,6 +151,7 @@ import ArtCarousel from "./components/ArtCarousel";
 import ActorExperience from "./components/ActorExperience";
 import Footer from "./components/Footer";
 import ContactSection from "./components/ContactSection";
+
 
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
