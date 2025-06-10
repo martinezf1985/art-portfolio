@@ -39,7 +39,7 @@ const ArtCarousel: React.FC = () => {
               autoPlay
               muted
             >
-              <source src={`/videos/${src}`} type="video/mp4" />
+              <source src={`public/videos/${src}`} type="video/mp4" />
               Tu navegador no soporta videos HTML5.
             </video>
           </SwiperSlide>
