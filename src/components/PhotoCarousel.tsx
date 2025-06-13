@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -20,8 +19,8 @@ const PhotoCarousel: React.FC = () => {
   };
 
   const photos = [
-    'foto01.jpg', 'foto02.jpg', 'foto03.jpg', 'foto04.jpg',
-    'foto05.jpg', 'foto06.jpg', 'foto07.jpg', 'foto08.jpg',
+    'foto01.webp', 'foto02.webp', 'foto03.webp', 'foto04.webp',
+    'foto05.webp', 'foto06.webp', 'foto07.webp', 'foto08.webp',
   ];
 
   return (
@@ -39,7 +38,9 @@ const PhotoCarousel: React.FC = () => {
         {photos.map((filename) => (
           <SwiperSlide key={filename} className="flex items-center justify-center">
             <img
-              src={`/photos/${filename}`}
+              src={`/public_:>
+                
+                /photos/${filename}`}
               alt={filename}
               className="w-full h-full object-contain bg-black"
               loading="lazy"
