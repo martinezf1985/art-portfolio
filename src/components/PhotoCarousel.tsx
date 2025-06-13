@@ -40,7 +40,7 @@ const PhotoCarousel: React.FC = () => {
             <img
               src={`/public_:>
                 
-                /photos/${filename}`}
+                /public/photos/${filename}`}
               alt={filename}
               className="w-full h-full object-contain bg-black"
               loading="lazy"
@@ -50,6 +50,7 @@ const PhotoCarousel: React.FC = () => {
         ))}
 
         {/* Círculo de progreso */}
+        
         <div className="autoplay-progress absolute bottom-4 right-4">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20" />
