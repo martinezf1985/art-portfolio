@@ -31,7 +31,7 @@ const ArtCarousel: React.FC = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="w-full h-full"
       >
-        {['video01.mp4', 'video02.mp4', 'video03.mp4', 'video04.mp4', 'video05.mp4'].map((src) => (
+        {['video01.mp4', 'video02.mp4', 'video03.mp4', 'video05.mp4'].map((src) => (
           <SwiperSlide key={src}>
             <video
               className="w-full h-full object-cover"
