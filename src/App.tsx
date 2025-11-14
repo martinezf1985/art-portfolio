@@ -147,6 +147,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PhotoCarousel from "./components/PhotoCarousel";
+import PhotoGrid from "./components/PhotoGrid";
 import ArtCarousel from "./components/ArtCarousel";
 import ActorExperience from "./components/ActorExperience";
 import Footer from "./components/Footer";
@@ -222,6 +223,11 @@ const App: React.FC = () => {
             Fotografías seleccionadas de proyectos actorales y artísticos.
           </p>
         </div>
+      </section>
+
+      {/* Galería en Cuadrícula */}
+      <section className="px-6 py-16 bg-gray-950/90">
+        <PhotoGrid />
       </section>
 
       <section

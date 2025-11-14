@@ -15,7 +15,7 @@ const ArtCarousel: React.FC = () => {
   const onAutoplayTimeLeft = (_s: unknown, time: number, progress: number) => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty('--progress', `${1 - progress}`);
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+      progressContent.current.textContent = `${Math.ceil(time / 50000)}s`;
     }
   };
 
@@ -24,10 +24,10 @@ const ArtCarousel: React.FC = () => {
       <Swiper
         spaceBetween={30}
         centeredSlides
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        autoplay={{ delay: 70000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
-        modules={[Autoplay, Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="w-full h-full"
       >

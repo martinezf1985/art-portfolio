@@ -42,7 +42,7 @@ const PhotoCarousel: React.FC = () => {
               alt={filename}
               className="w-full h-full object-contain bg-black"
               loading="lazy"
-                onError={() => console.error(`No se pudo cargar la imagen: ${filename}`)}
+              onError={() => console.error(`No se pudo cargar la imagen: ${filename}`)}
             />
           </SwiperSlide>
         ))}
