@@ -7,15 +7,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import '../css/VideoCarousel.css'; // clase con animación de progreso
+import { useAudioControls } from '../context/AudioControlContext';
 
 const ArtCarousel: React.FC = () => {
   const progressCircle = useRef<SVGSVGElement | null>(null);
   const progressContent = useRef<HTMLSpanElement | null>(null);
+  const { pauseBackground, resumeBackground } = useAudioControls();
 
   const onAutoplayTimeLeft = (_s: unknown, time: number, progress: number) => {
     if (progressCircle.current && progressContent.current) {
       progressCircle.current.style.setProperty('--progress', `${1 - progress}`);
-      progressContent.current.textContent = `${Math.ceil(time / 50000)}s`;
+      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
   };
 
@@ -27,7 +29,7 @@ const ArtCarousel: React.FC = () => {
         autoplay={{ delay: 70000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
-          modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="w-full h-full"
       >
@@ -36,8 +38,10 @@ const ArtCarousel: React.FC = () => {
             <video
               className="w-full h-full object-cover"
               controls
-              autoPlay
               muted
+              onPlay={pauseBackground}
+              onPause={resumeBackground}
+              onEnded={resumeBackground}
             >
               <source src={`/videos/${src}`} type="video/mp4" />
               

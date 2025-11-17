@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import '../css/VideoCarousel.css';
+import { PHOTOS } from '../constants/photos';
 
 const PhotoCarousel: React.FC = () => {
   const progressCircle = useRef<SVGSVGElement | null>(null);
@@ -17,26 +18,6 @@ const PhotoCarousel: React.FC = () => {
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
   };
-
-  const photos = [
-    'foto01.webp',
-    'foto02.webp',
-    'foto03.webp',
-    'foto04.webp',
-    'foto05.webp',
-    'foto07.webp',
-    'foto08.webp',
-    'WhatsApp Image 2025-10-17 at 8.43.30 PM (1).jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.30 PM.jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.33 PM (1).jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.33 PM.jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.35 PM (1).jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.35 PM (2).jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.35 PM.jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.36 PM (1).jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.36 PM.jpeg',
-    'WhatsApp Image 2025-10-17 at 8.43.37 PM (1).jpeg',
-  ];
 
   return (
     <div className="relative w-full max-w-4xl mx-auto bg-black rounded-2xl shadow-2xl overflow-hidden aspect-[3/4]">
@@ -50,7 +31,7 @@ const PhotoCarousel: React.FC = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="w-full h-full"
       >
-        {photos.map((filename) => (
+        {PHOTOS.map((filename) => (
           <SwiperSlide key={filename} className="flex items-center justify-center">
             <img
               src={`/photos/${filename}`}
