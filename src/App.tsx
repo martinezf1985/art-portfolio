@@ -9,11 +9,13 @@ import Footer from "./components/Footer";
 import ContactSection from "./components/ContactSection";
 import YouTubeSpotlight from "./components/YouTubeSpotlight";
 import BackgroundMusicPlayer from "./components/BackgroundMusicPlayer";
+import Cover from "./components/Cover";
 import { AudioControlProvider } from "./context/AudioControlContext";
 
 
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showCover, setShowCover] = useState(true);
 
   const photoRef = useRef<HTMLDivElement>(null);
   const artRef = useRef<HTMLDivElement>(null);
@@ -53,9 +55,28 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleEnterPortfolio = () => {
+    setShowCover(false);
+    // Guardar en localStorage para no mostrar el cover nuevamente en esta sesión
+    localStorage.setItem('coverShown', 'true');
+  };
+
+  // Verificar si el cover ya fue mostrado en esta sesión
+  useEffect(() => {
+    const coverShown = localStorage.getItem('coverShown');
+    if (coverShown === 'true') {
+      setShowCover(false);
+    }
+  }, []);
+
   return (
     <AudioControlProvider>
     <div className="min-h-screen bg-gradient-to-br from-violet-900 via-black to-black text-white overflow-x-hidden">
+      {/* Cover Screen */}
+      {showCover && <Cover onEnter={handleEnterPortfolio} />}
+      
+      {!showCover && (
+        <>
       <header className="py-6 bg-black/70 shadow-md">
         <NavBar />
       </header>
@@ -136,6 +157,8 @@ const App: React.FC = () => {
       )}
 
         <BackgroundMusicPlayer />
+        </>
+      )}
     </div>
     </AudioControlProvider>
   );
