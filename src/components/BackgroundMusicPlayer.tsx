@@ -11,22 +11,40 @@ interface Track {
 
 const PLAYLIST: Track[] = [
   {
-    title: "Evening Glow",
-    artist: "Pixabay",
-    src: "https://cdn.pixabay.com/download/audio/2023/09/02/audio_932ce9ff6e.mp3?filename=evening-glow-172496.mp3",
+    title: "Track 1",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=o0kmeLN3Vys&list=PLcmuVGc5nux778O6p8exUOq9eHYoRAs_e&index=1",
     cover: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=400&q=60",
   },
   {
-    title: "New Beginnings",
-    artist: "Pixabay",
-    src: "https://cdn.pixabay.com/download/audio/2023/10/26/audio_156450fe7c.mp3?filename=new-beginnings-173344.mp3",
+    title: "Track 2",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=p_Lop3880Kw&list=PLKsSQjMAbBxjWkTmuCQb9rAiQEEmso4em&index=16",
     cover: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=60",
   },
   {
-    title: "Serene Horizon",
-    artist: "Pixabay",
-    src: "https://cdn.pixabay.com/download/audio/2023/08/28/audio_0b3839b9d3.mp3?filename=serene-horizon-172230.mp3",
+    title: "Track 3",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=BGlj8wiAUwI",
     cover: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=400&q=60",
+  },
+  {
+    title: "Track 4",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=CwTw-AF2nHo&list=PL8Lpw39GxwbPjAynj0jvuAtPsv9CFXapn&index=7",
+    cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=60",
+  },
+  {
+    title: "Track 5",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=2u0BujSenmU&list=PL8Lpw39GxwbPjAynj0jvuAtPsv9CFXapn&index=5",
+    cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=400&q=60",
+  },
+  {
+    title: "Track 6",
+    artist: "YouTube",
+    src: "https://www.youtube.com/watch?v=s4DEe5Yv4L0&list=PL8Lpw39GxwbPjAynj0jvuAtPsv9CFXapn&index=6",
+    cover: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=400&q=60",
   },
 ];
 
@@ -95,7 +113,17 @@ const BackgroundMusicPlayer: React.FC = () => {
         width={0}
         loop={false}
         onEnded={handleNext}
-        config={{ file: { forceAudio: true } }}
+        config={{
+          youtube: {
+            playerVars: {
+              autoplay: 0,
+              controls: 0,
+              modestbranding: 1,
+              rel: 0,
+            },
+          },
+          file: { forceAudio: true },
+        }}
       />
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-6 md:translate-x-0 z-40">
         <div className="bg-black/80 backdrop-blur rounded-2xl shadow-2xl border border-violet-500/40 w-[320px] max-w-[90vw] p-4 flex items-center gap-4">

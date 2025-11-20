@@ -29,7 +29,7 @@ const ArtCarousel: React.FC = () => {
         autoplay={{ delay: 70000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation
-        modules={[Autoplay, Pagination, Navigation]}
+          modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="w-full h-full"
       >

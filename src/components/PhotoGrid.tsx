@@ -1,30 +1,37 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { PHOTOS } from '../constants/photos';
+import React, { useState } from 'react';
 
 interface PhotoGridProps {
-  photos?: readonly string[];
+  photos?: string[];
 }
 
 const PhotoGrid: React.FC<PhotoGridProps> = ({ 
-  photos = PHOTOS 
+  photos = [
+    'foto01.webp',
+    'foto02.webp',
+    'foto03.webp',
+    'foto04.webp',
+    'foto05.webp',
+    'foto07.webp',
+    'foto08.webp',
+    'WhatsApp Image 2025-10-17 at 8.43.30 PM (1).jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.30 PM.jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.33 PM (1).jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.33 PM.jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.35 PM (1).jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.35 PM (2).jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.35 PM.jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.36 PM (1).jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.36 PM.jpeg',
+    'WhatsApp Image 2025-10-17 at 8.43.37 PM (1).jpeg',
+  ] 
 }) => {
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Memoizar la lista de fotos para evitar recreaciones innecesarias
-  const photosList = useMemo(() => photos, [photos]);
-
-  // Cleanup: restaurar scroll cuando el componente se desmonte
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
-
   const openModal = (photo: string, index: number) => {
     setSelectedPhoto(photo);
     setCurrentIndex(index);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // Prevenir scroll del body
   };
 
   const closeModal = () => {
@@ -34,16 +41,16 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
 
   const nextPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const nextIndex = (currentIndex + 1) % photosList.length;
+    const nextIndex = (currentIndex + 1) % photos.length;
     setCurrentIndex(nextIndex);
-    setSelectedPhoto(photosList[nextIndex]);
+    setSelectedPhoto(photos[nextIndex]);
   };
 
   const prevPhoto = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const prevIndex = (currentIndex - 1 + photosList.length) % photosList.length;
+    const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
     setCurrentIndex(prevIndex);
-    setSelectedPhoto(photosList[prevIndex]);
+    setSelectedPhoto(photos[prevIndex]);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -63,20 +70,11 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
           Galería Completa
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {photosList.map((photo, index) => (
+          {photos.map((photo, index) => (
             <div
               key={photo}
               className="relative group cursor-pointer overflow-hidden rounded-lg aspect-square bg-black"
               onClick={() => openModal(photo, index)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  openModal(photo, index);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`Ver foto ${index + 1}: ${photo}`}
             >
               <img
                 src={`/photos/${photo}`}
@@ -135,7 +133,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
           </button>
 
           {/* Botón anterior */}
-          {photosList.length > 1 && (
+          {photos.length > 1 && (
             <button
               onClick={prevPhoto}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-violet-400 transition-colors z-10 bg-black/50 rounded-full p-3"
@@ -170,7 +168,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
           </div>
 
           {/* Botón siguiente */}
-          {photosList.length > 1 && (
+          {photos.length > 1 && (
             <button
               onClick={nextPhoto}
               className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-violet-400 transition-colors z-10 bg-black/50 rounded-full p-3"
@@ -193,9 +191,9 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({
           )}
 
           {/* Indicador de posición */}
-          {photosList.length > 1 && (
+          {photos.length > 1 && (
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
-              {currentIndex + 1} / {photosList.length}
+              {currentIndex + 1} / {photos.length}
             </div>
           )}
         </div>

@@ -55,88 +55,88 @@ const App: React.FC = () => {
 
   return (
     <AudioControlProvider>
-      <div className="min-h-screen bg-gradient-to-br from-violet-900 via-black to-black text-white overflow-x-hidden">
-        <header className="py-6 bg-black/70 shadow-md">
-          <NavBar />
-        </header>
+    <div className="min-h-screen bg-gradient-to-br from-violet-900 via-black to-black text-white overflow-x-hidden">
+      <header className="py-6 bg-black/70 shadow-md">
+        <NavBar />
+      </header>
 
-        <section className="text-center py-12">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
-            FERDINAN MARTINS – Actor & Artista Visual
-          </h1>
-          <p className="mt-4 text-gray-300 text-lg">
-            Portfolio profesional y artístico
+      <section className="text-center py-12">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
+          FERDINAN MARTINS – Actor & Artista Visual
+        </h1>
+        <p className="mt-4 text-gray-300 text-lg">
+          Portfolio profesional y artístico
+        </p>
+      </section>
+
+      <section
+        ref={photoRef}
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 bg-black"
+      >
+        <PhotoCarousel />
+        <div className="text-center md:text-left">
+          <h2 className="text-3xl font-bold text-violet-300 mb-4">
+            Galería Fotográfica
+          </h2>
+          <p className="text-gray-400">
+            Fotografías seleccionadas de proyectos actorales y artísticos.
           </p>
-        </section>
-
-        <section
-          ref={photoRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 bg-black"
-        >
-          <PhotoCarousel />
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl font-bold text-violet-300 mb-4">
-              Galería Fotográfica
-            </h2>
-            <p className="text-gray-400">
-              Fotografías seleccionadas de proyectos actorales y artísticos.
-            </p>
-          </div>
-        </section>
+        </div>
+      </section>
 
         {/* Galería en Cuadrícula */}
         <section className="px-6 py-16 bg-gray-950/90">
           <PhotoGrid />
         </section>
 
-        <section
-          ref={artRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 items-center bg-gray-950/90"
-        >
-          <div>
-            <h2 className="text-3xl font-semibold text-violet-400 mb-4">
-              Obras Visuales
-            </h2>
-            <p className="text-gray-300">
-              Carrusel con obras visuales propias, estilo artístico contemporáneo y
-              expresivo.
-            </p>
-          </div>
-          <ArtCarousel />
-        </section>
+      <section
+        ref={artRef}
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 py-16 items-center bg-gray-950/90"
+      >
+        <div>
+          <h2 className="text-3xl font-semibold text-violet-400 mb-4">
+            Obras Visuales
+          </h2>
+          <p className="text-gray-300">
+            Carrusel con obras visuales propias, estilo artístico contemporáneo y
+            expresivo.
+          </p>
+        </div>
+        <ArtCarousel />
+      </section>
 
         <YouTubeSpotlight />
 
-        <section
-          ref={actorRef}
-          className="transition-all duration-500 ease-in-out px-6 py-12 bg-black/80"
+      <section
+        ref={actorRef}
+        className="transition-all duration-500 ease-in-out px-6 py-12 bg-black/80"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-violet-400 mb-6 text-center">
+            Experiencia como Actor
+          </h2>
+          <ActorExperience />
+        </div>
+      </section>
+
+      <ContactSection ref={contactRef} />
+
+      <footer className="bg-black py-8 text-center text-gray-400 text-sm border-t border-violet-800">
+        <Footer />
+      </footer>
+
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-violet-600 text-white rounded-full p-3 shadow-lg hover:bg-violet-400 transition-all"
+          aria-label="Volver arriba"
         >
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-violet-400 mb-6 text-center">
-              Experiencia como Actor
-            </h2>
-            <ActorExperience />
-          </div>
-        </section>
-
-        <ContactSection ref={contactRef} />
-
-        <footer className="bg-black py-8 text-center text-gray-400 text-sm border-t border-violet-800">
-          <Footer />
-        </footer>
-
-        {showScrollTop && (
-          <button
-            onClick={scrollToTop}
-            className="fixed bottom-6 right-6 bg-violet-600 text-white rounded-full p-3 shadow-lg hover:bg-violet-400 transition-all"
-            aria-label="Volver arriba"
-          >
-            ↑
-          </button>
-        )}
+          ↑
+        </button>
+      )}
 
         <BackgroundMusicPlayer />
-      </div>
+    </div>
     </AudioControlProvider>
   );
 };
